@@ -1,8 +1,8 @@
 namespace WinFormsApp
 {
-    public partial class Form1 : Form
+    public partial class frmAgregarProducto : Form
     {
-        public Form1()
+        public frmAgregarProducto()
         {
             InitializeComponent();
         }
