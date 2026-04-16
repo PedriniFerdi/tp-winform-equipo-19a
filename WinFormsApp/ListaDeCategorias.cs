@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -13,18 +14,51 @@ namespace WinFormsApp
 {
     public partial class FrmCategorias : Form
     {
+
+        private List<Categoria> listaCategorias = new List<Categoria>();
+
         public FrmCategorias()
         {
             InitializeComponent();
         }
 
+
+
+        private void refrescarGrid()
+        {
+            DgvCategorias.DataSource = null;
+            DgvCategorias.DataSource = listaCategorias;
+
+            if (DgvCategorias.Columns["Id"] != null)
+                DgvCategorias.Columns["Id"].Visible = false;
+
+            if (DgvCategorias.Columns["Descripcion"] != null)
+                DgvCategorias.Columns["Descripcion"].HeaderText = "Nombre de la Categoria";
+        }
+
+
         private void DgvCategorias_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-           
+
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
+
+            if (string.IsNullOrEmpty(txtNombreCategoria.Text))
+            {
+                MessageBox.Show("Escribe un nombre para la Categoria");
+            }
+
+
+            Categoria nueva = new Categoria();
+            nueva.Id = listaCategorias.Count + 1;
+            nueva.Descripcion = txtNombreCategoria.Text;
+
+            listaCategorias.Add(nueva);
+
+            txtNombreCategoria.Clear();
+            refrescarGrid();
 
         }
 
@@ -40,19 +74,21 @@ namespace WinFormsApp
 
         private void FrmCategorias_Load(object sender, EventArgs e)
         {
-            List<Categoria> listaPrueba = new List<Categoria>();
-            listaPrueba.Add(new Categoria { Id = 1, Descripcion = "prueba" });
-            listaPrueba.Add(new Categoria { Id = 2, Descripcion = "prueba 2" });
-            listaPrueba.Add(new Categoria { Id = 3, Descripcion = "prueba 3" });
-            listaPrueba.Add(new Categoria { Id = 4, Descripcion = "prueba 4" });
-            listaPrueba.Add(new Categoria { Id = 5, Descripcion = "prueba 5" });
-            listaPrueba.Add(new Categoria { Id = 6, Descripcion = "prueba 6" });
-            listaPrueba.Add(new Categoria { Id = 7, Descripcion = "prueba 7" });
 
-            DgvCategorias.DataSource = listaPrueba;
+            listaCategorias.Add(new Categoria { Id = 1, Descripcion = "prueba" });
 
-            DgvCategorias.Columns["Id"].Visible = true;
-            DgvCategorias.Columns["Descripcion"].HeaderText = "Nombre de la Categoria";
+            refrescarGrid();
+
+        }
+
+        private void txtNombreCategoria_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

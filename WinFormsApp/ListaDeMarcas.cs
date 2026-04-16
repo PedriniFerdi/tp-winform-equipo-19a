@@ -13,6 +13,8 @@ namespace WinFormsApp
 {
     public partial class ListaDeMarcas : Form
     {
+        private List<Marca> listaMarcas = new List<Marca>();
+
         public ListaDeMarcas()
         {
             InitializeComponent();
@@ -20,29 +22,54 @@ namespace WinFormsApp
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            // frmAltaMarca alta = new frmAltaMarca();
+            if (string.IsNullOrEmpty(txtNombreMarca.Text))
+            {
+                MessageBox.Show("Por favor, escribí el nombre de la marca.");
+                return;
+            }
 
-            //  alta.ShowDialog();
+
+            Marca nueva = new Marca();
+            nueva.Id = listaMarcas.Count + 1;
+            nueva.Descripcion = txtNombreMarca.Text;
+
+
+            listaMarcas.Add(nueva);
+
+
+            txtNombreMarca.Clear();
+
+
+            refrescarGrid();
+
         }
 
         private void ListaDeMarcas_Load(object sender, EventArgs e)
         {
 
-            List<Marca> listaPrueba = new List<Marca>();
-            listaPrueba.Add(new Marca { Id = 1, Descripcion = "prueba" });
-            listaPrueba.Add(new Marca { Id = 2, Descripcion = "prueba 2" });
-            listaPrueba.Add(new Marca { Id = 3, Descripcion = "prueba 3" });
-            listaPrueba.Add(new Marca { Id = 4, Descripcion = "prueba 4" });
-            listaPrueba.Add(new Marca { Id = 5, Descripcion = "prueba 5" });
-            listaPrueba.Add(new Marca { Id = 6, Descripcion = "prueba 6" });
-            listaPrueba.Add(new Marca { Id = 7, Descripcion = "prueba 7" });
+            listaMarcas.Add(new Marca { Id = 1, Descripcion = "prueba" });
 
-            dgvMarcas.DataSource = listaPrueba;
 
-            dgvMarcas.Columns["Id"].Visible = false;
-            dgvMarcas.Columns["Descripcion"].HeaderText = "Nombre de la Marca";
 
+            refrescarGrid();
         }
+
+        private void refrescarGrid()
+        {
+            dgvMarcas.DataSource = null;
+            dgvMarcas.DataSource = listaMarcas;
+
+           
+            if (dgvMarcas.Columns["Id"] != null)
+                dgvMarcas.Columns["Id"].Visible = false;
+
+            if (dgvMarcas.Columns["Descripcion"] != null)
+                dgvMarcas.Columns["Descripcion"].HeaderText = "Nombre de la Marca";
+        }
+
+
+
+
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
@@ -50,6 +77,16 @@ namespace WinFormsApp
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dgvMarcas_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void txtNombreMarca_TextChanged(object sender, EventArgs e)
         {
 
         }
