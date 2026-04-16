@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Negocio", "Negocio\Negocio.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinFormsApp", "WinFormsApp\WinFormsApp.csproj", "{C92E049C-A0F8-4B7A-8577-A0AFFC7835B2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Acceso Datos", "Acceso Datos\Acceso Datos.csproj", "{A79B15A5-C493-49EA-A78D-2F465940B6DC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccesoDatos", "Acceso Datos\AccesoDatos.csproj", "{A79B15A5-C493-49EA-A78D-2F465940B6DC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

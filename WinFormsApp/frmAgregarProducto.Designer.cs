@@ -170,6 +170,7 @@
             btnAceptar.TabIndex = 14;
             btnAceptar.Text = "Aceptar";
             btnAceptar.UseVisualStyleBackColor = true;
+            btnAceptar.Click += btnAceptar_Click;
             // 
             // button1
             // 
@@ -179,6 +180,7 @@
             button1.TabIndex = 15;
             button1.Text = "Cancelar";
             button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
             // frmAgregarProducto
             // 
