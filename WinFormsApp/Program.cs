@@ -13,9 +13,9 @@ namespace WinFormsApp
             ApplicationConfiguration.Initialize();
 
          ///   Application.Run(new ListaDeMarcas());
-         ///   Application.Run(new FrmCategorias());
+         Application.Run(new FrmCategorias());
 
-            Application.Run(new frmAgregarProducto());
+            //Application.Run(new frmAgregarProducto());
         }
     }
 }
