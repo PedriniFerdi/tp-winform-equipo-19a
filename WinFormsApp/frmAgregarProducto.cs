@@ -1,6 +1,6 @@
 using Dominio;
 using System.ComponentModel;
-
+using Acceso_Datos;
 
 namespace WinFormsApp
 {
@@ -14,7 +14,7 @@ namespace WinFormsApp
         public Imagen imagen { get; set; } = new Imagen();
         public bool modificar = false;
 
-       // public static frmAgregarIMG instance;
+       // public static frmAgregarIMG instance; (falta ese form)
         public frmAgregarProducto()
         {
             InitializeComponent();
@@ -35,7 +35,7 @@ namespace WinFormsApp
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-           // ArticuloService articuloService = new ArticuloService();
+           ArticuloService articuloService = new ArticuloService(); 
             Articulo articulo = new Articulo();
 
             try
