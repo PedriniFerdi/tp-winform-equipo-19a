@@ -14,7 +14,7 @@ namespace WinFormsApp
         public Imagen imagen { get; set; } = new Imagen();
         public bool modificar = false;
 
-        public static frmAgregarIMG instance;
+       // public static frmAgregarIMG instance;
         public frmAgregarProducto()
         {
             InitializeComponent();
@@ -35,7 +35,7 @@ namespace WinFormsApp
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            ArticuloService articuloService = new ArticuloService();
+           // ArticuloService articuloService = new ArticuloService();
             Articulo articulo = new Articulo();
 
             try
@@ -63,12 +63,12 @@ namespace WinFormsApp
                 if (modificar)
                 {
                     articulo.Id = this.Articulo.Id;
-                    articuloService.modificar(articulo);
+                   // articuloService.modificar(articulo);
                     MessageBox.Show("PRODUCTO MODIFICADO CON ÉXITO");
                 }
                 else
                 {
-                    int idArt = articuloService.agregarProducto(articulo);
+                  //  int idArt = articuloService.agregarProducto(articulo);
                     MessageBox.Show("PRODUCTO AGREGADO CON ÉXITO");
                     MemoriaArticulo.Instance().ReinicarMemoria();
                 }
