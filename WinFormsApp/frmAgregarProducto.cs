@@ -1,4 +1,5 @@
 using Dominio;
+using Negocio;
 using System.ComponentModel;
 
 namespace WinFormsApp
@@ -35,6 +36,7 @@ namespace WinFormsApp
         private void btnAceptar_Click(object sender, EventArgs e)
         {
             Articulo articulo = new Articulo();
+            var negocio = new ArticuloNegocio();
 
             try
             {
@@ -46,7 +48,7 @@ namespace WinFormsApp
 
                 if (!decimal.TryParse(textPrecio.Text, out decimal precio) || precio < 0)
                 {
-                    MessageBox.Show("Ingrese un precio válido.");
+                    MessageBox.Show("Ingrese un precio valido.");
                     return;
                 }
 
@@ -61,13 +63,13 @@ namespace WinFormsApp
                 if (modificar)
                 {
                     articulo.Id = this.Articulo.Id;
-                    // articuloService.modificar(articulo);
-                    MessageBox.Show("PRODUCTO MODIFICADO CON ÉXITO");
+                    negocio.Modificar(articulo);
+                    MessageBox.Show("PRODUCTO MODIFICADO CON EXITO");
                 }
                 else
                 {
-                    //  int idArt = articuloService.agregarProducto(articulo);
-                    MessageBox.Show("PRODUCTO AGREGADO CON ÉXITO");
+                    negocio.Agregar(articulo);
+                    MessageBox.Show("PRODUCTO AGREGADO CON EXITO");
                     MemoriaArticulo.Instance().ReinicarMemoria();
                 }
 
@@ -75,7 +77,7 @@ namespace WinFormsApp
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Ocurrió un error: {ex.Message}");
+                MessageBox.Show($"Ocurrio un error: {ex.Message}");
             }
         }
         private bool ValidarCamposObligatorios()
