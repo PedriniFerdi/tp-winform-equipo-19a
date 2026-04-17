@@ -91,7 +91,41 @@ namespace WinFormsApp
 
         private void frmAgregarProducto_Load(object sender, EventArgs e)
         {
+            try
+            {
+                var marcas = new MarcaNegocio().Listar();
+                var categorias = new CategoriaNegocio().Listar();
 
+                cbMarca.DataSource = marcas;
+                cbMarca.DisplayMember = nameof(Dominio.Marca.Descripcion);
+                cbMarca.ValueMember = nameof(Dominio.Marca.Id);
+
+                cbCategoria.DataSource = categorias;
+                cbCategoria.DisplayMember = nameof(Dominio.Categoria.Descripcion);
+                cbCategoria.ValueMember = nameof(Dominio.Categoria.Id);
+
+                if (modificar && Articulo != null)
+                {
+                    textCodigo.Text = Articulo.CodigoArticulo ?? string.Empty;
+                    textNombre.Text = Articulo.Nombre ?? string.Empty;
+                    textDescripcion.Text = Articulo.Descripcion ?? string.Empty;
+                    textPrecio.Text = Articulo.Precio.ToString(System.Globalization.CultureInfo.CurrentCulture);
+
+                    if (Articulo.Marca != null && Articulo.Marca.Id > 0)
+                        cbMarca.SelectedValue = Articulo.Marca.Id;
+                    if (Articulo.Categoria != null && Articulo.Categoria.Id > 0)
+                        cbCategoria.SelectedValue = Articulo.Categoria.Id;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    "No se pudieron cargar marcas o categorias. Revisa la conexion y que existan MARCAS/CATEGORIAS.\n\n"
+                    + ex.Message,
+                    "Catalogo",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+            }
         }
 
         private void btnAgregarImagenes_Click(object sender, EventArgs e)

@@ -49,115 +49,124 @@
             // Codigo
             // 
             Codigo.AutoSize = true;
-            Codigo.Location = new Point(49, 49);
+            Codigo.Location = new Point(43, 37);
             Codigo.Name = "Codigo";
-            Codigo.Size = new Size(58, 20);
+            Codigo.Size = new Size(46, 15);
             Codigo.TabIndex = 0;
             Codigo.Text = "Codigo";
             // 
             // Nombre
             // 
             Nombre.AutoSize = true;
-            Nombre.Location = new Point(49, 100);
+            Nombre.Location = new Point(43, 75);
             Nombre.Name = "Nombre";
-            Nombre.Size = new Size(64, 20);
+            Nombre.Size = new Size(51, 15);
             Nombre.TabIndex = 1;
             Nombre.Text = "Nombre";
             // 
             // Descripcion
             // 
             Descripcion.AutoSize = true;
-            Descripcion.Location = new Point(49, 144);
+            Descripcion.Location = new Point(43, 108);
             Descripcion.Name = "Descripcion";
-            Descripcion.Size = new Size(87, 20);
+            Descripcion.Size = new Size(69, 15);
             Descripcion.TabIndex = 2;
             Descripcion.Text = "Descripcion";
             // 
             // Precio
             // 
             Precio.AutoSize = true;
-            Precio.Location = new Point(49, 187);
+            Precio.Location = new Point(43, 140);
             Precio.Name = "Precio";
-            Precio.Size = new Size(50, 20);
+            Precio.Size = new Size(40, 15);
             Precio.TabIndex = 3;
             Precio.Text = "Precio";
             // 
             // Marca
             // 
             Marca.AutoSize = true;
-            Marca.Location = new Point(49, 237);
+            Marca.Location = new Point(43, 178);
             Marca.Name = "Marca";
-            Marca.Size = new Size(50, 20);
+            Marca.Size = new Size(40, 15);
             Marca.TabIndex = 4;
             Marca.Text = "Marca";
             // 
             // Categoria
             // 
             Categoria.AutoSize = true;
-            Categoria.Location = new Point(49, 291);
+            Categoria.Location = new Point(43, 218);
             Categoria.Name = "Categoria";
-            Categoria.Size = new Size(74, 20);
+            Categoria.Size = new Size(58, 15);
             Categoria.TabIndex = 5;
             Categoria.Text = "Categoria";
             // 
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(49, 343);
+            label7.Location = new Point(43, 257);
             label7.Name = "label7";
-            label7.Size = new Size(78, 20);
+            label7.Size = new Size(62, 15);
             label7.TabIndex = 6;
             label7.Text = "UrlImagen";
             // 
             // textCodigo
             // 
-            textCodigo.Location = new Point(142, 45);
+            textCodigo.Location = new Point(124, 34);
+            textCodigo.Margin = new Padding(3, 2, 3, 2);
             textCodigo.Name = "textCodigo";
-            textCodigo.Size = new Size(163, 27);
+            textCodigo.Size = new Size(143, 23);
             textCodigo.TabIndex = 7;
             // 
             // textNombre
             // 
-            textNombre.Location = new Point(142, 97);
+            textNombre.Location = new Point(124, 73);
+            textNombre.Margin = new Padding(3, 2, 3, 2);
             textNombre.Name = "textNombre";
-            textNombre.Size = new Size(163, 27);
+            textNombre.Size = new Size(143, 23);
             textNombre.TabIndex = 8;
             // 
             // textDescripcion
             // 
-            textDescripcion.Location = new Point(142, 144);
+            textDescripcion.Location = new Point(124, 108);
+            textDescripcion.Margin = new Padding(3, 2, 3, 2);
             textDescripcion.Name = "textDescripcion";
-            textDescripcion.Size = new Size(163, 27);
+            textDescripcion.Size = new Size(143, 23);
             textDescripcion.TabIndex = 9;
             // 
             // textPrecio
             // 
-            textPrecio.Location = new Point(142, 187);
+            textPrecio.Location = new Point(124, 140);
+            textPrecio.Margin = new Padding(3, 2, 3, 2);
             textPrecio.Name = "textPrecio";
-            textPrecio.Size = new Size(163, 27);
+            textPrecio.Size = new Size(143, 23);
             textPrecio.TabIndex = 10;
             // 
             // cbMarca
             // 
+            cbMarca.DropDownStyle = ComboBoxStyle.DropDownList;
             cbMarca.FormattingEnabled = true;
-            cbMarca.Location = new Point(142, 237);
+            cbMarca.Location = new Point(124, 178);
+            cbMarca.Margin = new Padding(3, 2, 3, 2);
             cbMarca.Name = "cbMarca";
-            cbMarca.Size = new Size(163, 28);
+            cbMarca.Size = new Size(143, 23);
             cbMarca.TabIndex = 11;
             // 
             // cbCategoria
             // 
+            cbCategoria.DropDownStyle = ComboBoxStyle.DropDownList;
             cbCategoria.FormattingEnabled = true;
-            cbCategoria.Location = new Point(142, 291);
+            cbCategoria.Location = new Point(124, 218);
+            cbCategoria.Margin = new Padding(3, 2, 3, 2);
             cbCategoria.Name = "cbCategoria";
-            cbCategoria.Size = new Size(163, 28);
+            cbCategoria.Size = new Size(143, 23);
             cbCategoria.TabIndex = 12;
             // 
             // btnAgregarImagenes
             // 
-            btnAgregarImagenes.Location = new Point(142, 339);
+            btnAgregarImagenes.Location = new Point(124, 254);
+            btnAgregarImagenes.Margin = new Padding(3, 2, 3, 2);
             btnAgregarImagenes.Name = "btnAgregarImagenes";
-            btnAgregarImagenes.Size = new Size(112, 29);
+            btnAgregarImagenes.Size = new Size(98, 22);
             btnAgregarImagenes.TabIndex = 13;
             btnAgregarImagenes.Text = "Agregar";
             btnAgregarImagenes.UseVisualStyleBackColor = true;
@@ -165,9 +174,10 @@
             // 
             // btnAceptar
             // 
-            btnAceptar.Location = new Point(358, 139);
+            btnAceptar.Location = new Point(313, 104);
+            btnAceptar.Margin = new Padding(3, 2, 3, 2);
             btnAceptar.Name = "btnAceptar";
-            btnAceptar.Size = new Size(93, 37);
+            btnAceptar.Size = new Size(81, 28);
             btnAceptar.TabIndex = 14;
             btnAceptar.Text = "Aceptar";
             btnAceptar.UseVisualStyleBackColor = true;
@@ -175,9 +185,10 @@
             // 
             // button1
             // 
-            button1.Location = new Point(358, 220);
+            button1.Location = new Point(313, 165);
+            button1.Margin = new Padding(3, 2, 3, 2);
             button1.Name = "button1";
-            button1.Size = new Size(93, 37);
+            button1.Size = new Size(81, 28);
             button1.TabIndex = 15;
             button1.Text = "Cancelar";
             button1.UseVisualStyleBackColor = true;
@@ -185,9 +196,9 @@
             // 
             // frmAgregarProducto
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(526, 405);
+            ClientSize = new Size(460, 304);
             Controls.Add(button1);
             Controls.Add(btnAceptar);
             Controls.Add(btnAgregarImagenes);
@@ -204,6 +215,7 @@
             Controls.Add(Descripcion);
             Controls.Add(Nombre);
             Controls.Add(Codigo);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "frmAgregarProducto";
             Text = "AgregarProducto";
             Load += frmAgregarProducto_Load;
