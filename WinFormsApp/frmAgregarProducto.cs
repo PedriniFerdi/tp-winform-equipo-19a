@@ -91,5 +91,23 @@ namespace WinFormsApp
         {
 
         }
+
+        private void btnAgregarImagenes_Click(object sender, EventArgs e)
+        {
+
+
+            if (modificar == true)
+            {
+
+                //frmModificarImg formModificar = new frmModificarImg(articulo, modificar);
+               // formModificar.ShowDialog();
+
+            }
+            else
+            {
+                //frmAgregarIMG frmAgregarIMG = new frmAgregarIMG();
+                //frmAgregarIMG.ShowDialog();
+            }
+        }
     }
 }
