@@ -70,14 +70,14 @@ namespace WinFormsApp
 
         private void btnAgregarImg_Click(object sender, EventArgs e)
         {
-            //(hacer este form)frmModNuevaImg frmModNuevaImg = new frmModNuevaImg(articulo);
-            //frmModNuevaImg.ShowDialog();
-            //cargaDGVmodificarIMG();
+            frmModNuevaImg frmModNuevaImg = new frmModNuevaImg(articulo);
+            frmModNuevaImg.ShowDialog();
+            cargaDGVmodificarIMG();
         }
 
         private void btnModificarImg_Click(object sender, EventArgs e)
         {
-            /*
+            
             Imagen ImagenSeleccionada = new Imagen();
 
             if (dgvModificarImg.CurrentRow != null)
@@ -88,10 +88,10 @@ namespace WinFormsApp
             }
             ImagenSeleccionada = (Imagen)dgvModificarImg.CurrentRow.DataBoundItem;
 
-            (Hacer este form)frmSobreescribirUrl frmSobreescribirUrl = new frmSobreescribirUrl(articulo, ImagenSeleccionada);
+            frmSobreescribirUrl frmSobreescribirUrl = new frmSobreescribirUrl(articulo, ImagenSeleccionada);
             frmSobreescribirUrl.ShowDialog();
             cargaDGVmodificarIMG();
-            */
+           
         }
 
         private void btnEliminarImg_Click(object sender, EventArgs e)

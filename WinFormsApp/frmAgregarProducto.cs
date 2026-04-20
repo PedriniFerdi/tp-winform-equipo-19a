@@ -14,7 +14,7 @@ namespace WinFormsApp
         public Imagen imagen { get; set; } = new Imagen();
         public bool modificar = false;
 
-        // public static frmAgregarIMG instance; (falta ese form)
+        public static frmAgregarImagen instance;
         public frmAgregarProducto()
         {
             InitializeComponent();
