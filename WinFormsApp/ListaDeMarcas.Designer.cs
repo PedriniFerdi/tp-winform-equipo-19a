@@ -28,114 +28,110 @@
         /// </summary>
         private void InitializeComponent()
         {
-            dgvMarcas = new DataGridView();
-            btnAgregar = new Button();
-            btnModificar = new Button();
-            btnEliminar = new Button();
-            labelTitulo = new Label();
-            txtNombreMarca = new TextBox();
-            labelMarca = new Label();
-            ((System.ComponentModel.ISupportInitialize)dgvMarcas).BeginInit();
-            SuspendLayout();
+            this.dgvMarcas = new System.Windows.Forms.DataGridView();
+            this.btnAgregar = new System.Windows.Forms.Button();
+            this.btnModificar = new System.Windows.Forms.Button();
+            this.btnEliminar = new System.Windows.Forms.Button();
+            this.labelTitulo = new System.Windows.Forms.Label();
+            this.txtNombreMarca = new System.Windows.Forms.TextBox();
+            this.labelMarca = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvMarcas)).BeginInit();
+            this.SuspendLayout();
             // 
             // dgvMarcas
             // 
-            dgvMarcas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dgvMarcas.BackgroundColor = SystemColors.ControlLightLight;
-            dgvMarcas.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvMarcas.Location = new Point(74, 128);
-            dgvMarcas.Name = "dgvMarcas";
-            dgvMarcas.Size = new Size(533, 406);
-            dgvMarcas.TabIndex = 0;
-            dgvMarcas.CellContentClick += dgvMarcas_CellContentClick;
+            this.dgvMarcas.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvMarcas.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
+            this.dgvMarcas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvMarcas.Location = new System.Drawing.Point(63, 111);
+            this.dgvMarcas.Name = "dgvMarcas";
+            this.dgvMarcas.Size = new System.Drawing.Size(457, 352);
+            this.dgvMarcas.TabIndex = 0;
             // 
             // btnAgregar
             // 
-            btnAgregar.BackColor = SystemColors.ControlLightLight;
-            btnAgregar.FlatStyle = FlatStyle.Flat;
-            btnAgregar.Location = new Point(654, 128);
-            btnAgregar.Name = "btnAgregar";
-            btnAgregar.Size = new Size(75, 29);
-            btnAgregar.TabIndex = 1;
-            btnAgregar.Text = "Agregar";
-            btnAgregar.UseVisualStyleBackColor = false;
-            btnAgregar.Click += btnAgregar_Click;
+            this.btnAgregar.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnAgregar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAgregar.Location = new System.Drawing.Point(561, 111);
+            this.btnAgregar.Name = "btnAgregar";
+            this.btnAgregar.Size = new System.Drawing.Size(64, 25);
+            this.btnAgregar.TabIndex = 1;
+            this.btnAgregar.Text = "Agregar";
+            this.btnAgregar.UseVisualStyleBackColor = false;
             // 
             // btnModificar
             // 
-            btnModificar.BackColor = SystemColors.ControlLightLight;
-            btnModificar.FlatStyle = FlatStyle.Flat;
-            btnModificar.Location = new Point(654, 205);
-            btnModificar.Name = "btnModificar";
-            btnModificar.Size = new Size(75, 23);
-            btnModificar.TabIndex = 2;
-            btnModificar.Text = "Modificar";
-            btnModificar.UseVisualStyleBackColor = false;
-            btnModificar.Click += btnModificar_Click;
+            this.btnModificar.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnModificar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnModificar.Location = new System.Drawing.Point(561, 178);
+            this.btnModificar.Name = "btnModificar";
+            this.btnModificar.Size = new System.Drawing.Size(64, 20);
+            this.btnModificar.TabIndex = 2;
+            this.btnModificar.Text = "Modificar";
+            this.btnModificar.UseVisualStyleBackColor = false;
             // 
             // btnEliminar
             // 
-            btnEliminar.BackColor = SystemColors.ControlLightLight;
-            btnEliminar.FlatStyle = FlatStyle.Flat;
-            btnEliminar.Location = new Point(654, 273);
-            btnEliminar.Name = "btnEliminar";
-            btnEliminar.Size = new Size(75, 23);
-            btnEliminar.TabIndex = 3;
-            btnEliminar.Text = "Eliminar";
-            btnEliminar.UseVisualStyleBackColor = false;
-            btnEliminar.Click += btnEliminar_Click;
+            this.btnEliminar.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnEliminar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEliminar.Location = new System.Drawing.Point(561, 237);
+            this.btnEliminar.Name = "btnEliminar";
+            this.btnEliminar.Size = new System.Drawing.Size(64, 20);
+            this.btnEliminar.TabIndex = 3;
+            this.btnEliminar.Text = "Eliminar";
+            this.btnEliminar.UseVisualStyleBackColor = false;
             // 
             // labelTitulo
             // 
-            labelTitulo.AutoSize = true;
-            labelTitulo.BackColor = SystemColors.GradientInactiveCaption;
-            labelTitulo.Font = new Font("Arial Narrow", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            labelTitulo.ForeColor = SystemColors.ControlText;
-            labelTitulo.Location = new Point(345, 9);
-            labelTitulo.Name = "labelTitulo";
-            labelTitulo.Size = new Size(65, 23);
-            labelTitulo.TabIndex = 4;
-            labelTitulo.Text = "Marcas";
+            this.labelTitulo.AutoSize = true;
+            this.labelTitulo.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.labelTitulo.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelTitulo.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.labelTitulo.Location = new System.Drawing.Point(296, 8);
+            this.labelTitulo.Name = "labelTitulo";
+            this.labelTitulo.Size = new System.Drawing.Size(65, 23);
+            this.labelTitulo.TabIndex = 4;
+            this.labelTitulo.Text = "Marcas";
             // 
             // txtNombreMarca
             // 
-            txtNombreMarca.Location = new Point(174, 73);
-            txtNombreMarca.Name = "txtNombreMarca";
-            txtNombreMarca.Size = new Size(297, 23);
-            txtNombreMarca.TabIndex = 5;
-            txtNombreMarca.TextChanged += txtNombreMarca_TextChanged;
+            this.txtNombreMarca.Location = new System.Drawing.Point(149, 63);
+            this.txtNombreMarca.Name = "txtNombreMarca";
+            this.txtNombreMarca.Size = new System.Drawing.Size(255, 20);
+            this.txtNombreMarca.TabIndex = 5;
             // 
             // labelMarca
             // 
-            labelMarca.AutoSize = true;
-            labelMarca.Location = new Point(74, 76);
-            labelMarca.Name = "labelMarca";
-            labelMarca.Size = new Size(83, 15);
-            labelMarca.TabIndex = 6;
-            labelMarca.Text = "Nueva Marca :";
+            this.labelMarca.AutoSize = true;
+            this.labelMarca.Location = new System.Drawing.Point(63, 66);
+            this.labelMarca.Name = "labelMarca";
+            this.labelMarca.Size = new System.Drawing.Size(78, 13);
+            this.labelMarca.TabIndex = 6;
+            this.labelMarca.Text = "Nueva Marca :";
             // 
             // ListaDeMarcas
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
-            AutoScaleMode = AutoScaleMode.Font;
-            BackColor = SystemColors.GradientInactiveCaption;
-            ClientSize = new Size(799, 594);
-            Controls.Add(labelMarca);
-            Controls.Add(txtNombreMarca);
-            Controls.Add(labelTitulo);
-            Controls.Add(btnEliminar);
-            Controls.Add(btnModificar);
-            Controls.Add(btnAgregar);
-            Controls.Add(dgvMarcas);
-            MaximumSize = new Size(815, 633);
-            MinimumSize = new Size(815, 633);
-            Name = "ListaDeMarcas";
-            StartPosition = FormStartPosition.CenterScreen;
-            Text = "ListaDeMarcas";
-            Load += ListaDeMarcas_Load;
-            ((System.ComponentModel.ISupportInitialize)dgvMarcas).EndInit();
-            ResumeLayout(false);
-            PerformLayout();
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.ClientSize = new System.Drawing.Size(685, 515);
+            this.Controls.Add(this.labelMarca);
+            this.Controls.Add(this.txtNombreMarca);
+            this.Controls.Add(this.labelTitulo);
+            this.Controls.Add(this.btnEliminar);
+            this.Controls.Add(this.btnModificar);
+            this.Controls.Add(this.btnAgregar);
+            this.Controls.Add(this.dgvMarcas);
+            this.MaximumSize = new System.Drawing.Size(701, 554);
+            this.MinimumSize = new System.Drawing.Size(701, 554);
+            this.Name = "ListaDeMarcas";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "ListaDeMarcas";
+            this.Load += new System.EventHandler(this.ListaDeMarcas_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvMarcas)).EndInit();
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
         }
 
         #endregion

@@ -1,4 +1,5 @@
 ﻿using Dominio;
+using Negocio;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,6 +18,7 @@ namespace WinFormsApp
 
         private List<Categoria> listaCategorias = new List<Categoria>();
 
+
         public FrmCategorias()
         {
             InitializeComponent();
@@ -26,57 +28,155 @@ namespace WinFormsApp
 
         private void refrescarGrid()
         {
-            DgvCategorias.DataSource = null;
-            DgvCategorias.DataSource = listaCategorias;
+            CategoriaNegocio negocio = new CategoriaNegocio();
 
-            if (DgvCategorias.Columns["Id"] != null)
-                DgvCategorias.Columns["Id"].Visible = false;
+            try
+            {
+                listaCategorias = negocio.Listar();
+                DgvCategorias.DataSource = listaCategorias;
+                configurarGrilla();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al conectar con la base de datos" + ex.ToString());
 
-            if (DgvCategorias.Columns["Descripcion"] != null)
-                DgvCategorias.Columns["Descripcion"].HeaderText = "Nombre de la Categoria";
+            }
         }
 
-
-        private void DgvCategorias_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(txtNombreCategoria.Text))
+            {
+                MessageBox.Show("El nombre no puede estar vacío.");
+                return;
+            }
 
             if (string.IsNullOrEmpty(txtNombreCategoria.Text))
             {
                 MessageBox.Show("Escribe un nombre para la Categoria");
             }
 
-
+            
             Categoria nueva = new Categoria();
-            nueva.Id = listaCategorias.Count + 1;
             nueva.Descripcion = txtNombreCategoria.Text;
 
-            listaCategorias.Add(nueva);
+            CategoriaNegocio negocio = new CategoriaNegocio();
+            try
+            {
+                //negocio.Agregar(nueva);
+                MessageBox.Show("Categoria Guardada Exitosamente!");
 
-            txtNombreCategoria.Clear();
-            refrescarGrid();
+                txtNombreCategoria.Clear();
+                refrescarGrid();
+            }
+
+            catch (Exception ex)
+            {
+                MessageBox.Show("La Categoria no se ha podido guardar:" + ex.Message);
+            }
+          
 
         }
+
+        private void configurarGrilla()
+        {
+
+            if (DgvCategorias.Columns["Id"] != null)
+                DgvCategorias.Columns["Id"].Visible = false;
+
+
+            if (DgvCategorias.Columns["Descripcion"] != null)
+                DgvCategorias.Columns["Descripcion"].HeaderText = "Nombre de la Categoría";
+
+            DgvCategorias.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            DgvCategorias.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            DgvCategorias.ReadOnly = true;
+        }
+
+
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
 
+            if (string.IsNullOrWhiteSpace(txtNombreCategoria.Text))
+            {
+                MessageBox.Show("El nombre no puede estar vacío.");
+                return;
+            }
+
+
+
+            if (DgvCategorias.CurrentRow == null)
+            {
+                MessageBox.Show("Selecciona una categoria para modificar");
+                return;
+            }
+
+            Categoria seleccionado = (Categoria)DgvCategorias.CurrentRow.DataBoundItem;
+            // txtNpmbreCategoria.Text = seleccionado.Descripcion;
+
+            CategoriaNegocio negocio = new CategoriaNegocio();
+
+            try
+            {
+                //seleccionado.Descripcion = txtNombreCategoria.Text;
+                //negocio.modificar(seleccionado);
+
+                MessageBox.Show("categoria modificada existosamente!");
+                refrescarGrid();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("No se ha podido modificar la categoria:" + ex.ToString());
+            }
+
+
         }
+
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
+
+            if (DgvCategorias.CurrentRow == null)
+            {
+                MessageBox.Show("Selecciona una categoria para eliminar");
+                return;
+            }
+
+            Categoria seleccionado = (Categoria)DgvCategorias.CurrentRow.DataBoundItem;
+            CategoriaNegocio negocio = new CategoriaNegocio();
+
+            try
+            {
+                DialogResult respuesta = MessageBox.Show
+                    ("Estas seguro de eliminar la categoria:" + seleccionado.Descripcion + "?",
+                     "Confirmar Eliminacion " ,
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning
+                    );
+
+                if (respuesta == DialogResult.Yes)
+                {
+                    //  negocio.eliminar(seleccionado.ID);
+                    MessageBox.Show("Categoria eliminada exitosamente!");
+                    refrescarGrid();
+
+                }
+
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("No se ha podido eliminar la categoria:" + ex.Message);
+
+            }
 
         }
 
         private void FrmCategorias_Load(object sender, EventArgs e)
         {
-
-            listaCategorias.Add(new Categoria { Id = 1, Descripcion = "prueba" });
-
+         
             refrescarGrid();
 
         }
