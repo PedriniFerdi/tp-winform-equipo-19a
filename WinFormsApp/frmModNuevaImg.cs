@@ -1,4 +1,5 @@
 ﻿using Dominio;
+using Negocio;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -26,15 +27,25 @@ namespace WinFormsApp
 
         private void btnNuevaImg_Click(object sender, EventArgs e)
         {
-            /*
-            string ImagenUrl = txtUrlNuevaIMG.Text;
-            ImagenNegocio imagenNegocio = new ImagenNegocio();
-            Imagen imagen = new Imagen();
+            if (string.IsNullOrWhiteSpace(txtUrlNuevaIMG.Text))
+            {
+                MessageBox.Show("Ingresa una URL valida.");
+                return;
+            }
 
-            imagen.ImagenUrl = ImagenUrl;
-            imagenNegocio.agregarImagen(imagen, articulo.Id);
-            this.Close();
-            */
+            try
+            {
+                string ImagenUrl = txtUrlNuevaIMG.Text.Trim();
+                var imagenNegocio = new ImagenNegocio();
+                var imagen = new Imagen { ImagenUrl = ImagenUrl };
+
+                imagenNegocio.AgregarImagen(imagen, articulo.Id);
+                Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("No se pudo agregar la imagen: " + ex.Message);
+            }
         }
     }
 }

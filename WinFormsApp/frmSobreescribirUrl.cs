@@ -1,4 +1,5 @@
 ﻿using Dominio;
+using Negocio;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -29,16 +30,26 @@ namespace WinFormsApp
 
         private void btnSobreescribirUrl_Click(object sender, EventArgs e)
         {
-            /*
-            string ImagenUrl = txtSobreescribirUrl.Text;
-            ImagenNegocio imagenNegocio = new ImagenNegocio();
-            Imagen imagen = new Imagen();
+            if (string.IsNullOrWhiteSpace(txtSobreescribirUrl.Text))
+            {
+                MessageBox.Show("Ingresa una URL valida.");
+                return;
+            }
 
-            imagen.ImagenUrl = ImagenUrl;
-            imagenNegocio.eliminarImagen(imagenSeleccionada, articulo.Id);
-            imagenNegocio.agregarImagen(imagen, articulo.Id);
-            this.Close();
-            */
+            try
+            {
+                string ImagenUrl = txtSobreescribirUrl.Text.Trim();
+                var imagenNegocio = new ImagenNegocio();
+                var imagen = new Imagen { ImagenUrl = ImagenUrl };
+
+                imagenNegocio.EliminarImagen(imagenSeleccionada, articulo.Id);
+                imagenNegocio.AgregarImagen(imagen, articulo.Id);
+                Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("No se pudo actualizar la imagen: " + ex.Message);
+            }
         }
     }
 }

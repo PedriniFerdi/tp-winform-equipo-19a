@@ -1,4 +1,5 @@
 ﻿using Dominio;
+using Negocio;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -36,8 +37,15 @@ namespace WinFormsApp
         }
         public void cargaDGVmodificarIMG()
         {
-            //ImagenNegocio imagenNegocio = new ImagenNegocio();
-            //imagenesAmodificar = imagenNegocio.listarPorIdArticulo(articulo.Id);
+            if (articulo.Id <= 0)
+            {
+                dgvModificarImg.DataSource = imagenesAmodificar;
+                return;
+            }
+
+            var imagenNegocio = new ImagenNegocio();
+            imagenesAmodificar = imagenNegocio.ListarPorIdArticulo(articulo.Id);
+            dgvModificarImg.DataSource = null;
             dgvModificarImg.DataSource = imagenesAmodificar;
         }
         private void cargarImagen(string Urlimagen)
@@ -77,38 +85,38 @@ namespace WinFormsApp
 
         private void btnModificarImg_Click(object sender, EventArgs e)
         {
-            
-            Imagen ImagenSeleccionada = new Imagen();
-
-            if (dgvModificarImg.CurrentRow != null)
+            if (dgvModificarImg.CurrentRow?.DataBoundItem is not Imagen ImagenSeleccionada)
             {
-                ImagenSeleccionada = (Imagen)dgvModificarImg.CurrentRow.DataBoundItem;
-
-
+                MessageBox.Show("Selecciona una imagen de la lista.");
+                return;
             }
-            ImagenSeleccionada = (Imagen)dgvModificarImg.CurrentRow.DataBoundItem;
 
-            frmSobreescribirUrl frmSobreescribirUrl = new frmSobreescribirUrl(articulo, ImagenSeleccionada);
-            frmSobreescribirUrl.ShowDialog();
+            using var dlg = new frmSobreescribirUrl(articulo, ImagenSeleccionada);
+            dlg.ShowDialog();
             cargaDGVmodificarIMG();
-           
         }
 
         private void btnEliminarImg_Click(object sender, EventArgs e)
         {
-            /*
-            Imagen ImagenSeleccionada = new Imagen();
-            ImagenNegocio imagenNegocio = new ImagenNegocio();
-            if (dgvModificarImg.CurrentRow != null)
+            if (dgvModificarImg.CurrentRow?.DataBoundItem is not Imagen imagenSeleccionada)
             {
-                ImagenSeleccionada = (Imagen)dgvModificarImg.CurrentRow.DataBoundItem;
-
-
+                MessageBox.Show("Selecciona una imagen de la lista.");
+                return;
             }
-            ImagenSeleccionada = (Imagen)dgvModificarImg.CurrentRow.DataBoundItem;
-            imagenNegocio.eliminarImagen(ImagenSeleccionada, articulo.Id);
-            cargaDGVmodificarIMG();
-            */
+
+            if (MessageBox.Show("Eliminar esta imagen?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
+                return;
+
+            try
+            {
+                var imagenNegocio = new ImagenNegocio();
+                imagenNegocio.EliminarImagen(imagenSeleccionada, articulo.Id);
+                cargaDGVmodificarIMG();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("No se pudo eliminar la imagen: " + ex.Message);
+            }
         }
     }
 }
