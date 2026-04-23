@@ -23,14 +23,31 @@ namespace Negocio
                 db.agregarParametro("@idCategoria", articulo.Categoria.Id);
                 db.agregarParametro("@precio", articulo.Precio);
 
-                return db.insertarYobtenerId();
+                int IdArticuloNuevo = db.insertarYobtenerId();
+
+                AgregarImagenesAarticulo(IdArticuloNuevo, articulo);
+                return IdArticuloNuevo;
             }
             finally
             {
                 db.cerrarConexion();
             }
         }
-
+        private void AgregarImagenesAarticulo(int idArticulo, Articulo articulo)
+        {
+            ImagenNegocio imagenNegocio = new ImagenNegocio();
+            try
+            {
+                foreach (var imagen in articulo.Imagenes)
+                {
+                    imagenNegocio.AgregarImagen(imagen, idArticulo);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
         public void Modificar(Articulo articulo)
         {
             var db = new AccesoDatos();
@@ -61,6 +78,187 @@ namespace Negocio
             finally
             {
                 db.cerrarConexion();
+            }
+        }
+        public List<Articulo> Listar()
+        {
+            List<Articulo> lista = new List<Articulo>();
+            AccesoDatos accesoDatos = new AccesoDatos();
+            ImagenNegocio imagenNegocio = new ImagenNegocio();
+
+            try
+            {
+                accesoDatos.setearConsulta("SELECT A.Id, Codigo, Nombre, A.Descripcion, A.IdMarca, A.IdCategoria, M.Descripcion Nombre_Marca,C.Descripcion Nombre_Categoria, M.Id Id_Marca, C.Id Id_Categoria, A.Precio FROM ARTICULOS A INNER JOIN CATEGORIAS C ON A.IdCategoria = C.Id INNER JOIN MARCAS M ON A.IdMarca = M.Id ORDER BY A.Id ASC");
+                accesoDatos.ejecutarLectura();
+
+                while (accesoDatos.Lector.Read())
+                {
+                    Articulo articulo = new Articulo();
+
+                    articulo.Id = (int)accesoDatos.Lector["Id"];
+                    articulo.CodigoArticulo = (string)accesoDatos.Lector["Codigo"];
+                    articulo.Nombre = (string)accesoDatos.Lector["Nombre"];
+                    articulo.Descripcion = (string)accesoDatos.Lector["Descripcion"];
+
+
+                    articulo.Marca = new Marca();
+                    articulo.Marca.Descripcion = (string)accesoDatos.Lector["Nombre_Marca"];
+                    articulo.Marca.Id = (int)accesoDatos.Lector["IdMarca"];
+
+
+                    articulo.Categoria = new Categoria();
+                    articulo.Categoria.Descripcion = (string)accesoDatos.Lector["Nombre_Categoria"];
+                    articulo.Categoria.Id = (int)accesoDatos.Lector["IdCategoria"];
+
+                    articulo.Precio = (decimal)accesoDatos.Lector["Precio"];
+
+                    lista.Add(articulo);
+                }
+
+                foreach (var a in lista)
+                {
+                    List<Imagen> imagens = imagenNegocio.ListarPorIdArticulo(a.Id);
+                    a.Imagenes = imagens;
+                }
+                return lista;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+            finally
+            {
+                accesoDatos.cerrarConexion();
+
+            }
+        }
+        public List<Articulo> Fitrar(string campo, string criterio, string filtro)
+        {
+            List<Articulo> lista = new List<Articulo>();
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                string consulta = @"
+                SELECT A.Id, Codigo, Nombre, A.Descripcion, A.IdMarca, A.IdCategoria, 
+                M.Descripcion AS Nombre_Marca, C.Descripcion AS Nombre_Categoria, 
+                A.Precio 
+                FROM ARTICULOS A 
+                JOIN CATEGORIAS C ON A.IdCategoria = C.Id 
+                JOIN MARCAS M ON A.IdMarca = M.Id 
+                WHERE 1 = 1 ";
+
+                if (campo == "Codigo")
+                {
+                    consulta += "AND Codigo = @filtro ";
+                }
+
+                else if (campo == "Nombre")
+                {
+                    switch (criterio)
+                    {
+                        case "Comienza con":
+                            consulta += "AND Nombre LIKE @filtro + '%' ";
+                            break;
+                        case "Termina con":
+                            consulta += "AND Nombre LIKE '%' + @filtro ";
+                            break;
+                        default:
+                            consulta += "AND Nombre LIKE '%' + @filtro + '%' ";
+                            break;
+                    }
+                }
+                else
+                {
+                    switch (criterio)
+                    {
+                        case "Comienza con":
+                            consulta += "AND A.Descripcion LIKE @filtro + '%' ";
+                            break;
+                        case "Termina con":
+                            consulta += "AND A.Descripcion LIKE '%' + @filtro ";
+                            break;
+                        default:
+                            consulta += "AND A.Descripcion LIKE '%' + @filtro + '%' ";
+                            break;
+                    }
+                }
+
+                consulta += "ORDER BY A.Id ASC";
+
+                datos.setearConsulta(consulta);
+                datos.agregarParametro("@filtro", filtro);
+                datos.ejecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    Articulo articulo = new Articulo
+                    {
+                        Id = (int)datos.Lector["Id"],
+                        CodigoArticulo = (string)datos.Lector["Codigo"],
+                        Nombre = (string)datos.Lector["Nombre"],
+                        Descripcion = (string)datos.Lector["Descripcion"],
+                        Precio = (decimal)datos.Lector["Precio"],
+
+                        Marca = new Marca
+                        {
+                            Id = (int)datos.Lector["IdMarca"],
+                            Descripcion = (string)datos.Lector["Nombre_Marca"]
+                        },
+                        Categoria = new Categoria
+                        {
+                            Id = (int)datos.Lector["IdCategoria"],
+                            Descripcion = (string)datos.Lector["Nombre_Categoria"]
+                        }
+                    };
+
+                    lista.Add(articulo);
+                }
+
+                return lista;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public void Eliminar(int id)
+        {
+            AccesoDatos _accesoDatos = new AccesoDatos();
+
+            try
+            {
+
+
+                _accesoDatos.setearConsulta("delete from Articulos where id = @id");
+                _accesoDatos.setearParametro("@id", id);
+                _accesoDatos.ejecutarAccion();
+
+
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                _accesoDatos.cerrarConexion();
+
+            }
+        }
+        public void EliminarImagenPorId(int id)
+        {
+            AccesoDatos accesoDatos = new AccesoDatos();
+            try
+            {
+                accesoDatos.setearConsulta("DELETE IMAGENES from IMAGENES where idArticulo=@id");
+                accesoDatos.setearParametro("@id", id);
+                accesoDatos.ejecutarAccion();
+            }
+            catch (Exception ex) { throw ex; }
+            finally
+            {
+                accesoDatos.cerrarConexion();
             }
         }
     }

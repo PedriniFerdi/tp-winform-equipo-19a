@@ -28,99 +28,100 @@
         /// </summary>
         private void InitializeComponent()
         {
-            btnVolver = new Button();
-            lblUrl = new Label();
-            txtBoxUrLImg = new TextBox();
-            btnAgregar = new Button();
-            dgvAgregarImg = new DataGridView();
-            pbxAgregarImagen = new PictureBox();
-            ((System.ComponentModel.ISupportInitialize)dgvAgregarImg).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pbxAgregarImagen).BeginInit();
-            SuspendLayout();
-            // 
-            // btnVolver
-            // 
-            btnVolver.Location = new Point(242, 133);
-            btnVolver.Name = "btnVolver";
-            btnVolver.Size = new Size(215, 29);
-            btnVolver.TabIndex = 0;
-            btnVolver.Text = "Volver sin agregar";
-            btnVolver.UseVisualStyleBackColor = true;
-            btnVolver.Click += btnVolver_Click;
+            this.lblUrl = new System.Windows.Forms.Label();
+            this.txtUrl = new System.Windows.Forms.TextBox();
+            this.btnVolver = new System.Windows.Forms.Button();
+            this.btnAgregar = new System.Windows.Forms.Button();
+            this.dgvAgregarImg = new System.Windows.Forms.DataGridView();
+            this.pbxAgregarImg = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvAgregarImg)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbxAgregarImg)).BeginInit();
+            this.SuspendLayout();
             // 
             // lblUrl
             // 
-            lblUrl.AutoSize = true;
-            lblUrl.Location = new Point(12, 54);
-            lblUrl.Name = "lblUrl";
-            lblUrl.Size = new Size(87, 20);
-            lblUrl.TabIndex = 1;
-            lblUrl.Text = "Ingrese URL";
-            lblUrl.TextAlign = ContentAlignment.MiddleLeft;
+            this.lblUrl.AutoSize = true;
+            this.lblUrl.Location = new System.Drawing.Point(48, 82);
+            this.lblUrl.Name = "lblUrl";
+            this.lblUrl.Size = new System.Drawing.Size(82, 16);
+            this.lblUrl.TabIndex = 0;
+            this.lblUrl.Text = "Ingrese URL";
             // 
-            // txtBoxUrLImg
+            // txtUrl
             // 
-            txtBoxUrLImg.Location = new Point(12, 90);
-            txtBoxUrLImg.Name = "txtBoxUrLImg";
-            txtBoxUrLImg.Size = new Size(445, 27);
-            txtBoxUrLImg.TabIndex = 2;
+            this.txtUrl.Location = new System.Drawing.Point(51, 115);
+            this.txtUrl.Name = "txtUrl";
+            this.txtUrl.Size = new System.Drawing.Size(344, 22);
+            this.txtUrl.TabIndex = 1;
+            // 
+            // btnVolver
+            // 
+            this.btnVolver.Location = new System.Drawing.Point(224, 175);
+            this.btnVolver.Name = "btnVolver";
+            this.btnVolver.Size = new System.Drawing.Size(171, 23);
+            this.btnVolver.TabIndex = 2;
+            this.btnVolver.Text = "Volver sin agregar";
+            this.btnVolver.UseVisualStyleBackColor = true;
+            this.btnVolver.Click += new System.EventHandler(this.btnVolver_Click);
             // 
             // btnAgregar
             // 
-            btnAgregar.Location = new Point(130, 133);
-            btnAgregar.Name = "btnAgregar";
-            btnAgregar.Size = new Size(94, 29);
-            btnAgregar.TabIndex = 3;
-            btnAgregar.Text = "Agregar";
-            btnAgregar.UseVisualStyleBackColor = true;
-            btnAgregar.Click += btnAgregar_Click;
+            this.btnAgregar.Location = new System.Drawing.Point(122, 175);
+            this.btnAgregar.Name = "btnAgregar";
+            this.btnAgregar.Size = new System.Drawing.Size(75, 23);
+            this.btnAgregar.TabIndex = 3;
+            this.btnAgregar.Text = "Agregar";
+            this.btnAgregar.UseVisualStyleBackColor = true;
+            this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
             // 
             // dgvAgregarImg
             // 
-            dgvAgregarImg.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvAgregarImg.Location = new Point(12, 182);
-            dgvAgregarImg.Name = "dgvAgregarImg";
-            dgvAgregarImg.RowHeadersWidth = 51;
-            dgvAgregarImg.Size = new Size(445, 193);
-            dgvAgregarImg.TabIndex = 4;
-            dgvAgregarImg.SelectionChanged += dataGridView1_SelectionChanged;
+            this.dgvAgregarImg.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvAgregarImg.Location = new System.Drawing.Point(51, 236);
+            this.dgvAgregarImg.Name = "dgvAgregarImg";
+            this.dgvAgregarImg.RowHeadersWidth = 51;
+            this.dgvAgregarImg.RowTemplate.Height = 24;
+            this.dgvAgregarImg.Size = new System.Drawing.Size(344, 150);
+            this.dgvAgregarImg.TabIndex = 4;
+            this.dgvAgregarImg.SelectionChanged += new System.EventHandler(this.dgvAgregarImg_SelectionChanged);
             // 
-            // pbxAgregarImagen
+            // pbxAgregarImg
             // 
-            pbxAgregarImagen.BackColor = SystemColors.ActiveCaption;
-            pbxAgregarImagen.Location = new Point(483, 90);
-            pbxAgregarImagen.Name = "pbxAgregarImagen";
-            pbxAgregarImagen.Size = new Size(280, 285);
-            pbxAgregarImagen.TabIndex = 5;
-            pbxAgregarImagen.TabStop = false;
+            this.pbxAgregarImg.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.pbxAgregarImg.Location = new System.Drawing.Point(448, 115);
+            this.pbxAgregarImg.Name = "pbxAgregarImg";
+            this.pbxAgregarImg.Size = new System.Drawing.Size(289, 271);
+            this.pbxAgregarImg.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbxAgregarImg.TabIndex = 5;
+            this.pbxAgregarImg.TabStop = false;
             // 
             // frmAgregarImagen
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
-            AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(775, 406);
-            Controls.Add(pbxAgregarImagen);
-            Controls.Add(dgvAgregarImg);
-            Controls.Add(btnAgregar);
-            Controls.Add(txtBoxUrLImg);
-            Controls.Add(lblUrl);
-            Controls.Add(btnVolver);
-            Name = "frmAgregarImagen";
-            Text = "frmAgregarImagen";
-            Load += frmAgregarImagen_Load;
-            ((System.ComponentModel.ISupportInitialize)dgvAgregarImg).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pbxAgregarImagen).EndInit();
-            ResumeLayout(false);
-            PerformLayout();
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(749, 398);
+            this.Controls.Add(this.pbxAgregarImg);
+            this.Controls.Add(this.dgvAgregarImg);
+            this.Controls.Add(this.btnAgregar);
+            this.Controls.Add(this.btnVolver);
+            this.Controls.Add(this.txtUrl);
+            this.Controls.Add(this.lblUrl);
+            this.Name = "frmAgregarImagen";
+            this.Text = "frmAgregarImagen";
+            ((System.ComponentModel.ISupportInitialize)(this.dgvAgregarImg)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbxAgregarImg)).EndInit();
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
         }
 
         #endregion
 
-        private Button btnVolver;
         private Label lblUrl;
-        private TextBox txtBoxUrLImg;
+        private TextBox txtUrl;
+        private Button btnVolver;
         private Button btnAgregar;
         private DataGridView dgvAgregarImg;
-        private PictureBox pbxAgregarImagen;
+        private PictureBox pbxAgregarImg;
     }
 }

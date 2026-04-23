@@ -1,18 +1,31 @@
-﻿namespace Dominio
+﻿using System.ComponentModel;
+
+namespace Dominio
 {
     public class Articulo
     {
         public int Id { get; set; }
+        [DisplayName("Código de Artículo")]
         public string CodigoArticulo { get; set; }
+        [DisplayName("Nombre Artículo")]
         public string Nombre { get; set; }
+        [DisplayName("Descripcíon")]
         public string Descripcion { get; set; }
+        [DisplayName("Marca Artículo")]
         public Marca Marca { get; set; }
+        [DisplayName("Categoría Artículo")]
         public Categoria Categoria { get; set; }
+        [DisplayName("Precio")]
         public decimal Precio { get; set; }
+        [DisplayName("Imagenes")]
         public List<Imagen> Imagenes { get; set; }
         public Articulo()
         {
             Imagenes = new List<Imagen>();
+        }
+        public string FirstImage()
+        {
+            return Imagenes.Count() != 0 ? Imagenes[0].ImagenUrl : "";
         }
 
     }
