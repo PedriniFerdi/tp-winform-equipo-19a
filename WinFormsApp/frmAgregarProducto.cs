@@ -6,11 +6,11 @@ namespace WinFormsApp
 {
     public partial class frmAgregarProducto : Form
     {
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+
         public Articulo Articulo { get; set; } = new Articulo();
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+
         public List<Imagen> ImagenesBuffer { get; set; } = new List<Imagen>();
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+
         public Imagen imagen { get; set; } = new Imagen();
         public bool modificar = false;
 

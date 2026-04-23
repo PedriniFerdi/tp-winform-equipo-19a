@@ -53,6 +53,7 @@
             this.pbxModificarImg.Location = new System.Drawing.Point(285, 44);
             this.pbxModificarImg.Name = "pbxModificarImg";
             this.pbxModificarImg.Size = new System.Drawing.Size(331, 307);
+            this.pbxModificarImg.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbxModificarImg.TabIndex = 3;
             this.pbxModificarImg.TabStop = false;
             // 

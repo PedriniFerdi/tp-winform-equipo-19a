@@ -1,4 +1,5 @@
 ﻿using Dominio;
+using Negocio;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -21,7 +22,6 @@ namespace WinFormsApp
         {
             InitializeComponent();
         }
-
         public frmAgregarImagen(Articulo articuloEntrante, bool modificarEntrante)
         {
 
@@ -37,31 +37,11 @@ namespace WinFormsApp
             this.Close();
         }
 
-        public void cargaDataGridView()
-        {
-            //ImagenService imagenService = new ImagenService();
-
-
-            if (modificar)
-            {
-                //listaImagen = imagenService.listarPorIdArticulo(articulo.Id);
-                dgvAgregarImg.DataSource = listaImagen;
-
-            }
-            else
-            {
-                //listaImagen = imagenService.listar();
-                dgvAgregarImg.DataSource = MemoriaArticulo.Instance().Articulo.Imagenes;
-            }
-
-
-            //ocultarColumnasImagen();
-        }
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            string ImagenUrl = txtBoxUrLImg.Text;
+            string ImagenUrl = txtUrl.Text;
             Imagen imagen = new Imagen();
-            // ImagenUrl = "https://next-images.123rf.com/index/_next/image/?url=https://assets-cdn.123rf.com/index/static/assets/top-section-bg.jpeg&w=3840&q=75";
+          
             imagen.ImagenUrl = ImagenUrl;
 
             listaImagen2.Add(imagen);
@@ -70,11 +50,29 @@ namespace WinFormsApp
             MemoriaArticulo.Instance().Articulo = articulo;
 
             MessageBox.Show("Imagen agregada con exito");
-            txtBoxUrLImg.Text = "";
+            txtUrl.Text = "";
             cargaDataGridView();
         }
+        public void cargaDataGridView()
+        {
+            ImagenNegocio imagenNegocio = new ImagenNegocio();
 
-        private void dataGridView1_SelectionChanged(object sender, EventArgs e)
+
+            if (modificar)
+            {
+                listaImagen = imagenNegocio.ListarPorIdArticulo(articulo.Id);
+                dgvAgregarImg.DataSource = listaImagen;
+
+            }
+            else
+            {
+                listaImagen = imagenNegocio.Listar();
+                dgvAgregarImg.DataSource = MemoriaArticulo.Instance().Articulo.Imagenes;
+            }
+
+        }
+
+        private void dgvAgregarImg_SelectionChanged(object sender, EventArgs e)
         {
             if (dgvAgregarImg.CurrentRow != null)
             {
@@ -83,30 +81,24 @@ namespace WinFormsApp
                 cargarImagen(seleccionado.ImagenUrl);
             }
         }
-
         private void cargarImagen(string Urlimagen)
         {
             try
             {
 
-                pbxAgregarImagen.Load(Urlimagen);
+                pbxAgregarImg.Load(Urlimagen);
 
                 return;
 
             }
             catch (Exception)
             {
-                pbxAgregarImagen.Load("https://img.freepik.com/free-vector/funny-error-404-background-design_1167-219.jpg?t=st=1725827418~exp=1725831018~hmac=54590de3abb1e78d752a2b192ee5f3553e873955a510b935d7dd33c8d56a8a18&w=740");
+                pbxAgregarImg.Load("https://img.freepik.com/free-vector/funny-error-404-background-design_1167-219.jpg?t=st=1725827418~exp=1725831018~hmac=54590de3abb1e78d752a2b192ee5f3553e873955a510b935d7dd33c8d56a8a18&w=740");
                 return;
 
             }
 
 
-        }
-
-        private void frmAgregarImagen_Load(object sender, EventArgs e)
-        {
-            cargaDataGridView();
         }
     }
 }

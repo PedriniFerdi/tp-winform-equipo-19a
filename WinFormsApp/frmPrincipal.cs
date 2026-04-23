@@ -14,7 +14,7 @@ namespace WinFormsApp
 
         private void articulosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using var f = new frmAgregarProducto();
+            using var f = new ListaDeArticulos();
             f.ShowDialog(this);
         }
 
