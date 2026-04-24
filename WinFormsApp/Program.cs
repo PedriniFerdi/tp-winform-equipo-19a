@@ -12,6 +12,7 @@ namespace WinFormsApp
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new frmPrincipal());
 
+
         }
     }
 }

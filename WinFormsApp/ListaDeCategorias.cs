@@ -22,6 +22,11 @@ namespace WinFormsApp
         public FrmCategorias()
         {
             InitializeComponent();
+            refrescarGrid();
+
+            btnAgregar.Click += new EventHandler(btnAgregar_Click);
+            btnModificar.Click += new EventHandler(btnModificar_Click);
+            btnEliminar.Click += new EventHandler(btnEliminar_Click);
         }
 
 
@@ -64,7 +69,7 @@ namespace WinFormsApp
             CategoriaNegocio negocio = new CategoriaNegocio();
             try
             {
-                //negocio.Agregar(nueva);
+                negocio.agregar(nueva);
                 MessageBox.Show("Categoria Guardada Exitosamente!");
 
                 txtNombreCategoria.Clear();
@@ -99,12 +104,6 @@ namespace WinFormsApp
         private void btnModificar_Click(object sender, EventArgs e)
         {
 
-            if (string.IsNullOrWhiteSpace(txtNombreCategoria.Text))
-            {
-                MessageBox.Show("El nombre no puede estar vacío.");
-                return;
-            }
-
 
 
             if (DgvCategorias.CurrentRow == null)
@@ -113,24 +112,14 @@ namespace WinFormsApp
                 return;
             }
 
+           
             Categoria seleccionado = (Categoria)DgvCategorias.CurrentRow.DataBoundItem;
-            // txtNpmbreCategoria.Text = seleccionado.Descripcion;
+          
 
-            CategoriaNegocio negocio = new CategoriaNegocio();
-
-            try
-            {
-                //seleccionado.Descripcion = txtNombreCategoria.Text;
-                //negocio.modificar(seleccionado);
-
-                MessageBox.Show("categoria modificada existosamente!");
-                refrescarGrid();
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("No se ha podido modificar la categoria:" + ex.ToString());
-            }
+            FrmModificarCategoria ventanaModificar = new FrmModificarCategoria(seleccionado);
+            ventanaModificar.ShowDialog();
+            refrescarGrid();
+            
 
 
         }
@@ -159,7 +148,7 @@ namespace WinFormsApp
 
                 if (respuesta == DialogResult.Yes)
                 {
-                    //  negocio.eliminar(seleccionado.ID);
+                      negocio.eliminar(seleccionado.Id);
                     MessageBox.Show("Categoria eliminada exitosamente!");
                     refrescarGrid();
 
