@@ -45,6 +45,8 @@
             this.txtFiltroAvanzado = new System.Windows.Forms.TextBox();
             this.btnBuscarFiltro = new System.Windows.Forms.Button();
             this.btnRefresh = new System.Windows.Forms.Button();
+            this.btnImagenAnterior = new System.Windows.Forms.Button();
+            this.btnImagenSiguiente = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListaProd)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxArt)).BeginInit();
             this.SuspendLayout();
@@ -96,16 +98,15 @@
             this.pbxArt.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbxArt.TabIndex = 5;
             this.pbxArt.TabStop = false;
-            this.pbxArt.Click += new System.EventHandler(this.pbxArt_Click);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(985, 565);
+            this.label1.Location = new System.Drawing.Point(1053, 606);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(243, 16);
+            this.label1.Size = new System.Drawing.Size(73, 16);
             this.label1.TabIndex = 6;
-            this.label1.Text = "Haga click para ver la siguiente imagen";
+            this.label1.Text = "Imagen 0/0";
             // 
             // btnAgregarArticulo
             // 
@@ -208,11 +209,33 @@
             this.btnRefresh.UseVisualStyleBackColor = true;
             this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
+            // btnImagenAnterior
+            // 
+            this.btnImagenAnterior.Location = new System.Drawing.Point(1001, 566);
+            this.btnImagenAnterior.Name = "btnImagenAnterior";
+            this.btnImagenAnterior.Size = new System.Drawing.Size(75, 23);
+            this.btnImagenAnterior.TabIndex = 18;
+            this.btnImagenAnterior.Text = "←";
+            this.btnImagenAnterior.UseVisualStyleBackColor = true;
+            this.btnImagenAnterior.Click += new System.EventHandler(this.btnImagenAnterior_Click);
+            // 
+            // btnImagenSiguiente
+            // 
+            this.btnImagenSiguiente.Location = new System.Drawing.Point(1106, 566);
+            this.btnImagenSiguiente.Name = "btnImagenSiguiente";
+            this.btnImagenSiguiente.Size = new System.Drawing.Size(75, 23);
+            this.btnImagenSiguiente.TabIndex = 19;
+            this.btnImagenSiguiente.Text = "→";
+            this.btnImagenSiguiente.UseVisualStyleBackColor = true;
+            this.btnImagenSiguiente.Click += new System.EventHandler(this.btnImagenSiguiente_Click);
+            // 
             // ListaDeArticulos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1348, 689);
+            this.Controls.Add(this.btnImagenSiguiente);
+            this.Controls.Add(this.btnImagenAnterior);
             this.Controls.Add(this.btnRefresh);
             this.Controls.Add(this.btnBuscarFiltro);
             this.Controls.Add(this.txtFiltroAvanzado);
@@ -259,5 +282,7 @@
         private TextBox txtFiltroAvanzado;
         private Button btnBuscarFiltro;
         private Button btnRefresh;
+        private Button btnImagenAnterior;
+        private Button btnImagenSiguiente;
     }
 }
