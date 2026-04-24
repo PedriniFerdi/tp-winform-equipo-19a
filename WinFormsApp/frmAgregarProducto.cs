@@ -6,15 +6,15 @@ namespace WinFormsApp
 {
     public partial class frmAgregarProducto : Form
     {
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+
         public Articulo Articulo { get; set; } = new Articulo();
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+
         public List<Imagen> ImagenesBuffer { get; set; } = new List<Imagen>();
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+
         public Imagen imagen { get; set; } = new Imagen();
         public bool modificar = false;
 
-        // public static frmAgregarIMG instance; (falta ese form)
+        public static frmAgregarImagen instance;
         public frmAgregarProducto()
         {
             InitializeComponent();
@@ -131,18 +131,17 @@ namespace WinFormsApp
         private void btnAgregarImagenes_Click(object sender, EventArgs e)
         {
 
-
             if (modificar == true)
             {
 
-                //frmModificarImg formModificar = new frmModificarImg(articulo, modificar);
-               // formModificar.ShowDialog();
+                frmModificarImagen formModificar = new frmModificarImagen(Articulo, modificar);
+                formModificar.ShowDialog();
 
             }
             else
             {
-                //frmAgregarIMG frmAgregarIMG = new frmAgregarIMG();
-                //frmAgregarIMG.ShowDialog();
+                frmAgregarImagen frmAgregarIMG = new frmAgregarImagen();
+                frmAgregarIMG.ShowDialog();
             }
         }
     }
