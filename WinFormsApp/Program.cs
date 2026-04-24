@@ -10,8 +10,9 @@ namespace WinFormsApp
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmAgregarProducto());
-           // Application.Run(new ListaDeMarcas());
+             Application.Run(new frmAgregarProducto());
+            //Application.Run(new FrmCategorias());
+            //Application.Run(new ListaDeMarcas());
 
         }
     }
