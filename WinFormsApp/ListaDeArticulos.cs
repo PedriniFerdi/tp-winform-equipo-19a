@@ -36,6 +36,7 @@ namespace WinFormsApp
             dgvListaProd.DataSource = listaArticulos;
             ocultarColumnas();
             cargarImagen(listaArticulos[0].FirstImage());
+            actualizarContadorImagen(listaArticulos[0]);
         }
 
         private void dgvListaProd_SelectionChanged(object sender, EventArgs e)
@@ -43,7 +44,9 @@ namespace WinFormsApp
             if (dgvListaProd.CurrentRow != null)
             {
                 Articulo seleccionado = (Articulo)dgvListaProd.CurrentRow.DataBoundItem;
+                index = 0;
                 cargarImagen(seleccionado.FirstImage());
+                actualizarContadorImagen(seleccionado);
             }
         }
 
@@ -127,43 +130,7 @@ namespace WinFormsApp
             ocultarColumnas();
         }
 
-        private void pbxArt_Click(object sender, EventArgs e)
-        {
-            Articulo seleccionado = (Articulo)dgvListaProd.CurrentRow.DataBoundItem;
-            bool hayFoto = false;
-            int cantidad = seleccionado.Imagenes.Count;
-            Imagen UrlError = new Imagen();
-            UrlError.ImagenUrl = "https://st2.depositphotos.com/1560768/6162/i/450/depositphotos_61621057-stock-photo-no-image-available.jpg";
-            if (cantidad > 0)
-            {
-                hayFoto = true;
-            }
-
-            if (seleccionado.Imagenes.Count < index)
-            {
-                index = 0;
-            }
-            if (hayFoto && index < seleccionado.Imagenes.Count)
-            {
-                string segunda_imagen = seleccionado.Imagenes[index].ImagenUrl;
-                cargarImagen(segunda_imagen);
-            }
-            else
-            {
-                cargarImagen(UrlError.ImagenUrl);
-            }
-            if (seleccionado.Imagenes.Count > index)
-            {
-                index++;
-
-            }
-            else
-            {
-                index = 0;
-            }
-
-            hayFoto = false;
-        }
+        
 
         private void cbCampo_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -230,6 +197,10 @@ namespace WinFormsApp
             try
             {
                 seleccionado = (Articulo)dgvListaProd.CurrentRow.DataBoundItem;
+
+                if (MessageBox.Show("Esta seguro que desea eliminar el articulo de manera permanente?", "Confirmar eliminacion", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
+                    return;
+
                 negocio.Eliminar(seleccionado.Id);
                 negocio.EliminarImagenPorId(seleccionado.Id);
                 cargaDataGrid();
@@ -238,6 +209,53 @@ namespace WinFormsApp
             {
                 MessageBox.Show(ex.ToString());
             }
+        }
+
+        private void btnImagenAnterior_Click(object sender, EventArgs e)
+        {
+            navegarImagen(-1);
+        }
+
+        private void btnImagenSiguiente_Click(object sender, EventArgs e)
+        {
+            navegarImagen(1);
+        }
+        private void navegarImagen(int direccion)
+        {
+            if (dgvListaProd.CurrentRow == null)
+                return;
+
+            Articulo seleccionado = (Articulo)dgvListaProd.CurrentRow.DataBoundItem;
+            Imagen UrlError = new Imagen();
+            UrlError.ImagenUrl = "https://st2.depositphotos.com/1560768/6162/i/450/depositphotos_61621057-stock-photo-no-image-available.jpg";
+
+            if (seleccionado.Imagenes.Count == 0)
+            {
+                cargarImagen(UrlError.ImagenUrl);
+                actualizarContadorImagen(seleccionado);
+                return;
+            }
+
+
+            index += direccion;
+            if (index >= seleccionado.Imagenes.Count)
+                index = 0;
+            if (index < 0)
+                index = seleccionado.Imagenes.Count - 1;
+
+            cargarImagen(seleccionado.Imagenes[index].ImagenUrl);
+            actualizarContadorImagen(seleccionado);
+        }
+        private void actualizarContadorImagen(Articulo articulo)
+        {
+           
+            if (articulo.Imagenes.Count == 0)
+            {
+                label1.Text = "Imagen 0/0";
+                return;
+            }
+
+            label1.Text = $"Imagen {index + 1}/{articulo.Imagenes.Count}";
         }
     }
 }
