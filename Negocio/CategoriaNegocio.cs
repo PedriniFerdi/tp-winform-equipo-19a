@@ -30,7 +30,7 @@ namespace Negocio
 
 
 
-        public void agregar(Categoria nueva)
+        public void Agregar(Categoria nueva)
         {
             AccesoDatos db = new AccesoDatos(); 
             try
@@ -52,7 +52,7 @@ namespace Negocio
         }
 
 
-        public void modificar(Categoria seleccionado)
+        public void Modificar(Categoria seleccionado)
         {
             AccesoDatos datos = new AccesoDatos();
             try
@@ -79,7 +79,7 @@ namespace Negocio
 
 
 
-        public void eliminar(int id)
+        public void Eliminar(int id)
         {
             AccesoDatos datos = new AccesoDatos();
             try
