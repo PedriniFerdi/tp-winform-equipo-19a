@@ -24,29 +24,20 @@ namespace WinFormsApp
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-
             if (string.IsNullOrWhiteSpace(txtNombreMarca.Text))
             {
                 MessageBox.Show("El nombre no puede estar vacío.");
                 return;
             }
 
-
-            if (string.IsNullOrEmpty(txtNombreMarca.Text))
-            {
-                MessageBox.Show("Por favor, escribi el nombre de la marca.");
-                return;
-            }
-
             Marca nueva = new Marca();
-            nueva.Descripcion = txtNombreMarca.Text;
+            nueva.Descripcion = txtNombreMarca.Text.Trim();
 
 
             MarcaNegocio negocio = new MarcaNegocio();
             try
             {
-
-               // negocio.agregar(nueva);
+                negocio.Agregar(nueva);
 
                 MessageBox.Show("Marca guardada exitosamente!");
 
@@ -108,21 +99,19 @@ namespace WinFormsApp
             }
 
 
-            if (dgvMarcas.SelectedRows == null)
+            if (dgvMarcas.CurrentRow == null)
             {
                 MessageBox.Show("selecciona una marca para modificar");
                 return;
             }
             Marca seleccionado = (Marca)dgvMarcas.CurrentRow.DataBoundItem;
-            //txtNombreMarca.Text = seleccionado.Descripcion;
 
             MarcaNegocio negocio = new MarcaNegocio();
 
             try
             {
-
-                //seleccionado.Descripcion =txtNombreMarca.Text;
-                //negocio.modificar(seleccionado);
+                seleccionado.Descripcion = txtNombreMarca.Text.Trim();
+                negocio.Modificar(seleccionado);
 
                 MessageBox.Show("Marca modificada exitosamente!");
                 refrescarGrid();
@@ -156,7 +145,7 @@ namespace WinFormsApp
 
                 if(respuesta == DialogResult.Yes)
                 {
-                    //Negocio.eliminar(seleccionado.Id);
+                    negocio.Eliminar(seleccionado.Id);
                     MessageBox.Show("Marca eliminada correctamente!");
                     refrescarGrid();
 
