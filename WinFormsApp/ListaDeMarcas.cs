@@ -101,31 +101,26 @@ namespace WinFormsApp
         private void btnModificar_Click(object sender, EventArgs e)
         {
 
-            if (string.IsNullOrWhiteSpace(txtNombreMarca.Text))
-            {
-                MessageBox.Show("El nombre no puede estar vacío.");
-                return;
-            }
-
+           
 
             if (dgvMarcas.SelectedRows == null)
             {
                 MessageBox.Show("selecciona una marca para modificar");
                 return;
             }
-            Marca seleccionado = (Marca)dgvMarcas.CurrentRow.DataBoundItem;
-            //txtNombreMarca.Text = seleccionado.Descripcion;
-
-            MarcaNegocio negocio = new MarcaNegocio();
-
+           
             try
             {
+                Marca seleccionado = (Marca)dgvMarcas.CurrentRow.DataBoundItem;
 
-                //seleccionado.Descripcion =txtNombreMarca.Text;
-                //negocio.modificar(seleccionado);
+               
 
-                MessageBox.Show("Marca modificada exitosamente!");
+                FrmModificarMarca pantallaModif = new FrmModificarMarca(seleccionado);
+                
+                pantallaModif.ShowDialog();
+
                 refrescarGrid();
+
             }
             catch (Exception ex)
             {
