@@ -27,9 +27,9 @@ namespace Negocio
         public AccesoDatos()
         { 
             conexion = new SqlConnection(
-feature/ui-marcas-categorias
 
-                "server=localhost\\SQLEXPRESS02; database=CATALOGO_P3_DB; integrated security=true; TrustServerCertificate=True");
+
+                "server=.\\SQLEXPRESS; database=CATALOGO_P3_DB; integrated security=true; TrustServerCertificate=True");
 
             comando = new SqlCommand();
 
