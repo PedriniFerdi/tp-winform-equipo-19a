@@ -167,6 +167,7 @@ namespace Negocio
         {
             List<Articulo> lista = new List<Articulo>();
             AccesoDatos datos = new AccesoDatos();
+            ImagenNegocio imagenNegocio = new ImagenNegocio();
             try
             {
                 string consulta = @"
@@ -245,11 +246,22 @@ namespace Negocio
                     lista.Add(articulo);
                 }
 
+                datos.cerrarConexion();
+
+                foreach (var articulo in lista)
+                {
+                    articulo.Imagenes = imagenNegocio.ListarPorIdArticulo(articulo.Id);
+                }
+
                 return lista;
             }
             catch (Exception ex)
             {
                 throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
             }
         }
         public void Eliminar(int id)
