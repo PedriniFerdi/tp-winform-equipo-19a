@@ -69,6 +69,7 @@
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(100, 20);
             this.txtNombre.TabIndex = 3;
+            this.txtNombre.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNombre_KeyPress);
             // 
             // FrmModificarMarca
             // 
@@ -85,6 +86,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmModificarMarca";
             this.Load += new System.EventHandler(this.FrmModificarMarca_Load);
+            this.Click += new System.EventHandler(this.FrmModificarMarca_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

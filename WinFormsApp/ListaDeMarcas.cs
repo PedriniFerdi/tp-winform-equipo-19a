@@ -46,7 +46,7 @@ namespace WinFormsApp
             try
             {
 
-               // negocio.agregar(nueva);
+                negocio.Agregar(nueva);
 
                 MessageBox.Show("Marca guardada exitosamente!");
 
@@ -151,7 +151,7 @@ namespace WinFormsApp
 
                 if(respuesta == DialogResult.Yes)
                 {
-                    //Negocio.eliminar(seleccionado.Id);
+                    negocio.Eliminar(seleccionado.Id);
                     MessageBox.Show("Marca eliminada correctamente!");
                     refrescarGrid();
 
@@ -177,6 +177,14 @@ namespace WinFormsApp
         private void dgvMarcas_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void txtNombreMarca_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsLetterOrDigit(e.KeyChar) && !char.IsControl(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar))
+            {
+                e.Handled = true;
+            }
         }
     }
 }

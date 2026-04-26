@@ -49,7 +49,7 @@ namespace WinFormsApp
                 marca.Descripcion = txtNombre.Text;
 
                
-                negocio.modificar(marca);
+                negocio.Modificar(marca);
 
                 MessageBox.Show("¡Marca modificada con éxito!");
                 this.Close();
@@ -67,6 +67,12 @@ namespace WinFormsApp
             this.Close();
         }
 
-
+        private void txtNombre_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsLetterOrDigit(e.KeyChar) && !char.IsControl(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
     }
 }
