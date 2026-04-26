@@ -24,27 +24,20 @@ namespace WinFormsApp
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-
             if (string.IsNullOrWhiteSpace(txtNombreMarca.Text))
             {
                 MessageBox.Show("El nombre no puede estar vacío.");
                 return;
             }
 
-
-            if (string.IsNullOrEmpty(txtNombreMarca.Text))
-            {
-                MessageBox.Show("Por favor, escribi el nombre de la marca.");
-                return;
-            }
-
             Marca nueva = new Marca();
-            nueva.Descripcion = txtNombreMarca.Text;
+            nueva.Descripcion = txtNombreMarca.Text.Trim();
 
 
             MarcaNegocio negocio = new MarcaNegocio();
             try
             {
+
 
                 negocio.Agregar(nueva);
 
@@ -103,11 +96,12 @@ namespace WinFormsApp
 
            
 
-            if (dgvMarcas.SelectedRows == null)
+            if (dgvMarcas.CurrentRow == null)
             {
                 MessageBox.Show("selecciona una marca para modificar");
                 return;
             }
+
            
             try
             {
@@ -119,9 +113,10 @@ namespace WinFormsApp
                 
                 pantallaModif.ShowDialog();
 
-                refrescarGrid();
+           
+             refrescarGrid();
 
-            }
+          }
             catch (Exception ex)
             {
                 MessageBox.Show("La marca ingresada no se ha podido modificar;" + ex.ToString());

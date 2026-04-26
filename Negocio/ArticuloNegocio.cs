@@ -4,8 +4,38 @@ namespace Negocio
 {
     public class ArticuloNegocio
     {
+        private static void ValidarArticulo(Articulo articulo)
+        {
+            if (articulo == null)
+                throw new Exception("El articulo es obligatorio.");
+
+            if (string.IsNullOrWhiteSpace(articulo.CodigoArticulo))
+                throw new Exception("El codigo del articulo es obligatorio.");
+
+            if (string.IsNullOrWhiteSpace(articulo.Nombre))
+                throw new Exception("El nombre del articulo es obligatorio.");
+
+            if (string.IsNullOrWhiteSpace(articulo.Descripcion))
+                throw new Exception("La descripcion del articulo es obligatoria.");
+
+            if (articulo.Marca == null || articulo.Marca.Id <= 0)
+                throw new Exception("Debe seleccionar una marca valida.");
+
+            if (articulo.Categoria == null || articulo.Categoria.Id <= 0)
+                throw new Exception("Debe seleccionar una categoria valida.");
+
+            if (articulo.Precio < 0)
+                throw new Exception("El precio no puede ser negativo.");
+
+            articulo.CodigoArticulo = articulo.CodigoArticulo.Trim();
+            articulo.Nombre = articulo.Nombre.Trim();
+            articulo.Descripcion = articulo.Descripcion.Trim();
+            articulo.Imagenes ??= new List<Imagen>();
+        }
+
         public int Agregar(Articulo articulo)
         {
+            ValidarArticulo(articulo);
             var db = new AccesoDatos();
             try
             {
@@ -50,6 +80,7 @@ namespace Negocio
         }
         public void Modificar(Articulo articulo)
         {
+            ValidarArticulo(articulo);
             var db = new AccesoDatos();
             try
             {

@@ -63,6 +63,7 @@ namespace WinFormsApp
 
             try
             {
+
                 negocio.agregar(nueva);
                 MessageBox.Show("Categoría guardada exitosamente!");
                 txtNombreCategoria.Clear();
@@ -142,8 +143,12 @@ namespace WinFormsApp
 
                 if (respuesta == DialogResult.Yes)
                 {
+
                     negocio.eliminar(seleccionado.Id);
                     MessageBox.Show("Categoría eliminada correctamente.");
+
+                     
+
                     refrescarGrid();
                 }
             }

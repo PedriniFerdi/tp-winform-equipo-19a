@@ -46,7 +46,7 @@ namespace WinFormsApp
                 categoria.Descripcion = txtNombre.Text;
 
 
-                negocio.modificar(categoria);
+                negocio.Modificar(categoria);
 
                 MessageBox.Show("¡Modificado correctamente!");
                this.Close();
