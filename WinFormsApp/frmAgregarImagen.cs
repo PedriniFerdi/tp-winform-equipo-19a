@@ -39,7 +39,13 @@ namespace WinFormsApp
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            string ImagenUrl = txtUrl.Text;
+            if (string.IsNullOrWhiteSpace(txtUrl.Text))
+            {
+                MessageBox.Show("Ingresa una URL valida.");
+                return;
+            }
+
+            string ImagenUrl = txtUrl.Text.Trim();
             Imagen imagen = new Imagen();
           
             imagen.ImagenUrl = ImagenUrl;
