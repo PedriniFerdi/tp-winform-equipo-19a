@@ -29,8 +29,10 @@ namespace Negocio
                 db.cerrarConexion();
             }
         }
+            
 
         public void Agregar(Marca nueva)
+
         {
             var db = new AccesoDatos();
             try
@@ -74,6 +76,13 @@ namespace Negocio
             {
                 db.cerrarConexion();
             }
+
+
+
+
+
+
+
         }
     }
 }

@@ -37,6 +37,8 @@ namespace WinFormsApp
             MarcaNegocio negocio = new MarcaNegocio();
             try
             {
+
+
                 negocio.Agregar(nueva);
 
                 MessageBox.Show("Marca guardada exitosamente!");
@@ -92,30 +94,29 @@ namespace WinFormsApp
         private void btnModificar_Click(object sender, EventArgs e)
         {
 
-            if (string.IsNullOrWhiteSpace(txtNombreMarca.Text))
-            {
-                MessageBox.Show("El nombre no puede estar vacío.");
-                return;
-            }
-
+           
 
             if (dgvMarcas.CurrentRow == null)
             {
                 MessageBox.Show("selecciona una marca para modificar");
                 return;
             }
-            Marca seleccionado = (Marca)dgvMarcas.CurrentRow.DataBoundItem;
 
-            MarcaNegocio negocio = new MarcaNegocio();
-
+           
             try
             {
-                seleccionado.Descripcion = txtNombreMarca.Text.Trim();
-                negocio.Modificar(seleccionado);
+                Marca seleccionado = (Marca)dgvMarcas.CurrentRow.DataBoundItem;
 
-                MessageBox.Show("Marca modificada exitosamente!");
-                refrescarGrid();
-            }
+               
+
+                FrmModificarMarca pantallaModif = new FrmModificarMarca(seleccionado);
+                
+                pantallaModif.ShowDialog();
+
+           
+             refrescarGrid();
+
+          }
             catch (Exception ex)
             {
                 MessageBox.Show("La marca ingresada no se ha podido modificar;" + ex.ToString());
@@ -171,6 +172,14 @@ namespace WinFormsApp
         private void dgvMarcas_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void txtNombreMarca_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsLetterOrDigit(e.KeyChar) && !char.IsControl(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar))
+            {
+                e.Handled = true;
+            }
         }
     }
 }

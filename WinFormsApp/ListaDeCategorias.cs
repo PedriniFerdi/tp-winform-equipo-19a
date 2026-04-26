@@ -53,34 +53,54 @@ namespace WinFormsApp
         {
             if (string.IsNullOrWhiteSpace(txtNombreCategoria.Text))
             {
-                MessageBox.Show("El nombre no puede estar vacío.");
+                MessageBox.Show("El nombre de la categoría no puede estar vacío.");
                 return;
             }
 
-            if (string.IsNullOrEmpty(txtNombreCategoria.Text))
-            {
-                MessageBox.Show("Escribe un nombre para la Categoria");
-            }
-
-            
             Categoria nueva = new Categoria();
             nueva.Descripcion = txtNombreCategoria.Text;
-
             CategoriaNegocio negocio = new CategoriaNegocio();
+
             try
             {
-                negocio.Agregar(nueva);
-                MessageBox.Show("Categoria Guardada Exitosamente!");
 
+                negocio.agregar(nueva);
+                MessageBox.Show("Categoría guardada exitosamente!");
                 txtNombreCategoria.Clear();
                 refrescarGrid();
             }
-
             catch (Exception ex)
             {
-                MessageBox.Show("La Categoria no se ha podido guardar:" + ex.Message);
+                MessageBox.Show("La Categoría no se ha podido guardar: " + ex.Message);
             }
-          
+        }
+
+
+        private void btnModificar_Click(object sender, EventArgs e)
+        {
+
+            if (DgvCategorias.CurrentRow == null)
+            {
+                MessageBox.Show("Seleccioná una categoría para modificar.");
+                return;
+            }
+
+            try
+            {
+                Categoria seleccionado = (Categoria)DgvCategorias.CurrentRow.DataBoundItem;
+
+               
+                FrmModificarCategoria pantallaModif = new FrmModificarCategoria(seleccionado);
+                pantallaModif.ShowDialog();
+                refrescarGrid();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al intentar abrir modificar: " + ex.Message);
+            }
+
+
+
 
         }
 
@@ -101,36 +121,12 @@ namespace WinFormsApp
 
 
 
-        private void btnModificar_Click(object sender, EventArgs e)
-        {
-
-
-
-            if (DgvCategorias.CurrentRow == null)
-            {
-                MessageBox.Show("Selecciona una categoria para modificar");
-                return;
-            }
-
-           
-            Categoria seleccionado = (Categoria)DgvCategorias.CurrentRow.DataBoundItem;
-          
-
-            FrmModificarCategoria ventanaModificar = new FrmModificarCategoria(seleccionado);
-            ventanaModificar.ShowDialog();
-            refrescarGrid();
-            
-
-
-        }
-
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-
             if (DgvCategorias.CurrentRow == null)
             {
-                MessageBox.Show("Selecciona una categoria para eliminar");
+                MessageBox.Show("Seleccioná una categoría para eliminar.");
                 return;
             }
 
@@ -139,28 +135,27 @@ namespace WinFormsApp
 
             try
             {
-                DialogResult respuesta = MessageBox.Show
-                    ("Estas seguro de eliminar la categoria:" + seleccionado.Descripcion + "?",
-                     "Confirmar Eliminacion " ,
+                DialogResult respuesta = MessageBox.Show(
+                    "¿Estás seguro de eliminar la categoría: " + seleccionado.Descripcion + "?",
+                    "Confirmar eliminación",
                     MessageBoxButtons.YesNo,
-                    MessageBoxIcon.Warning
-                    );
+                    MessageBoxIcon.Warning);
 
                 if (respuesta == DialogResult.Yes)
                 {
-                      negocio.Eliminar(seleccionado.Id);
-                    MessageBox.Show("Categoria eliminada exitosamente!");
+
+                    negocio.eliminar(seleccionado.Id);
+                    MessageBox.Show("Categoría eliminada correctamente.");
+
+                     
+
                     refrescarGrid();
-
                 }
-
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                MessageBox.Show("No se ha podido eliminar la categoria:" + ex.Message);
-
+                MessageBox.Show("No se ha podido eliminar la categoría: " + ex.Message);
             }
-
         }
 
         private void FrmCategorias_Load(object sender, EventArgs e)
@@ -175,9 +170,12 @@ namespace WinFormsApp
 
         }
 
-        private void btn_Click(object sender, EventArgs e)
+        private void txtNombreCategoria_KeyPress(object sender, KeyPressEventArgs e)
         {
-
+            if (!char.IsLetterOrDigit(e.KeyChar) && !char.IsControl(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar))
+            {
+                e.Handled = true;
+            }
         }
     }
 }

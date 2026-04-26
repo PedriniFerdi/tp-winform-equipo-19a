@@ -102,6 +102,7 @@
             this.txtNombreMarca.Name = "txtNombreMarca";
             this.txtNombreMarca.Size = new System.Drawing.Size(255, 20);
             this.txtNombreMarca.TabIndex = 5;
+            this.txtNombreMarca.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNombreMarca_KeyPress);
             // 
             // labelMarca
             // 
