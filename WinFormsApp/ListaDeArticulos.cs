@@ -134,6 +134,9 @@ namespace WinFormsApp
 
         private void cbCampo_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (cbCampo.SelectedItem == null)
+                return;
+
             string opcion = cbCampo.SelectedItem.ToString();
             if (opcion == "Codigo")
             {

@@ -29,7 +29,7 @@ namespace Negocio
             conexion = new SqlConnection(
 
 
-                "server=localhost; database=CATALOGO_P3_DB; integrated security=true; TrustServerCertificate=True");
+                "server=localhost\\SQLEXPRESS02; database=CATALOGO_P3_DB; integrated security=true; TrustServerCertificate=True");
 
             comando = new SqlCommand();
 
